@@ -157,7 +157,7 @@ The `dm3` file metadata also contained acquisition details, that could be compar
 **Data ingestion**
 
 
-Typically, volumetric datasets are usually of ~TB size, and it's not efficient to pass the whole dataset the into ML pipelines. It would make sense to load the data in small blocks to provide a consistent load across multiple CPU/GPUs.
+Typically, volumetric datasets are usually of ~TB size, and it's not efficient to pass the whole dataset to a ML pipeline. It would make sense to load the data in small blocks to provide a consistent load across multiple CPU/GPUs.
 
 Here is how I think I would implemented the data loading software.
 
