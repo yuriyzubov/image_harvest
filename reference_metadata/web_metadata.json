@@ -1,0 +1,272 @@
+{
+  "openorganelle": {
+    "raw_metadata": {
+      "Acquisition details": {
+        "Imaging_start_date": " Mon Mar 09 2015",
+        "Final_voxel_size_(nm)": " (4, 4, 2.96) (x, y, z)",
+        "Dimensions_(nm)": " (10384, 10080, 1669.44) (x, y, z)",
+        "Dataset_ID": " jrc_mus-nacc-2",
+        "reconstructed_FIB-SEM_data": "https://doi.org/10.25378/janelia.24222898",
+        "Nuclei_segmentations": "https://doi.org/10.25378/janelia.26513209",
+        "Xu_et_al.,_2021": "https://doi.org/10.1038/s41586-021-03992-4",
+        "Xu_et_al.,_2017": "https://doi.org/10.7554/eLife.25916",
+        "Wu_et_al.,_2017": "https://doi.org/10.1073/pnas.1701078114",
+        "Dataset_location": " s3://janelia-cosem-datasets/jrc_mus-nacc-2/"
+      },
+      "FIB-SEM parameters": {
+        "Imaging_duration_(days)_": " 1",
+        "Bias_(Volts)": " 500",
+        "Scan_rate_(MHz)": " 0.4",
+        "Current_(nA)": " 0.22",
+        "Primary_energy_(eV)": " 200"
+      }
+    },
+    "download_links": [
+      "zarr://s3://janelia-cosem-datasets/jrc_mus-nacc-2/jrc_mus-nacc-2.zarr/recon-2/em/fibsem-int16"
+    ]
+  },
+  "hemibrain": {
+    "raw_metadata": {
+      "dimensions": {
+        "x": [
+          8e-09,
+          "m"
+        ],
+        "y": [
+          8e-09,
+          "m"
+        ],
+        "z": [
+          8e-09,
+          "m"
+        ]
+      },
+      "position": [
+        16191.96484375,
+        20705.708984375,
+        18610
+      ],
+      "crossSectionScale": 54.23751620061224,
+      "crossSectionDepth": -37.62185354999912,
+      "projectionScale": 64770.91726975332,
+      "layers": [
+        {
+          "type": "image",
+          "source": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/emdata/clahe_yz/jpeg",
+          "tab": "source",
+          "name": "emdata"
+        },
+        {
+          "type": "segmentation",
+          "source": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/segmentation",
+          "tab": "source",
+          "segments": [],
+          "name": "segmentation",
+          "visible": false
+        },
+        {
+          "type": "segmentation",
+          "source": {
+            "url": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/rois",
+            "subsources": {
+              "default": true,
+              "properties": true,
+              "mesh": true
+            },
+            "enableDefaultSubsources": false
+          },
+          "pick": false,
+          "tab": "segments",
+          "selectedAlpha": 0,
+          "saturation": 0,
+          "objectAlpha": 0.8,
+          "ignoreNullVisibleSet": false,
+          "meshSilhouetteRendering": 3,
+          "segments": [],
+          "colorSeed": 2685294016,
+          "name": "roi"
+        },
+        {
+          "type": "annotation",
+          "source": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/synapses",
+          "tab": "rendering",
+          "ignoreNullSegmentFilter": false,
+          "shader": "#uicontrol vec3 preColor color(default=\"red\")\n#uicontrol vec3 postColor color(default=\"blue\")\n#uicontrol float preConfidence slider(min=0, max=1, default=0)\n#uicontrol float postConfidence slider(min=0, max=1, default=0)\n\nvoid main() {\n  setColor(defaultColor());\n  setEndpointMarkerColor(\n    vec4(preColor, 0.5),\n    vec4(postColor, 0.5));\n  setEndpointMarkerSize(2.0, 2.0);\n  setLineWidth(2.0);\n  if (prop_pre_synaptic_confidence()< preConfidence ||\n      prop_post_synaptic_confidence()< postConfidence) discard;\n}\n",
+          "linkedSegmentationLayer": {
+            "pre_synaptic_cell": "segmentation",
+            "post_synaptic_cell": "segmentation"
+          },
+          "filterBySegmentation": [
+            "post_synaptic_cell",
+            "pre_synaptic_cell"
+          ],
+          "name": "synapse"
+        },
+        {
+          "type": "segmentation",
+          "source": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/mito_20190717.27250582",
+          "pick": false,
+          "tab": "segments",
+          "selectedAlpha": 0.82,
+          "segments": [],
+          "name": "mito",
+          "visible": false
+        },
+        {
+          "type": "segmentation",
+          "source": "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/mask_normalized_round6",
+          "pick": false,
+          "tab": "segments",
+          "selectedAlpha": 0.53,
+          "segments": [
+            "2"
+          ],
+          "name": "mask",
+          "visible": false
+        }
+      ],
+      "showSlices": false,
+      "selectedLayer": {
+        "size": 290,
+        "visible": true,
+        "layer": "segmentation"
+      },
+      "layout": "4panel",
+      "selection": {
+        "size": 290
+      }
+    },
+    "download_links": [
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/emdata/clahe_yz/jpeg",
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/segmentation",
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/rois",
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/v1.0/synapses",
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/mito_20190717.27250582",
+      "precomputed://gs://neuroglancer-janelia-flyem-hemibrain/mask_normalized_round6"
+    ]
+  },
+  "epfl": {
+    "dataset_description": "The dataset available for download on this webpage represents a 5x5x5\u00b5m section taken from the CA1 hippocampus region of the brain, corresponding to a 1065x2048x1536 volume. The resolution of each voxel is approximately 5x5x5nm. The data is provided as multipage TIF files that can be loaded in Fiji.",
+    "download_links": [
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/volumedata.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/training.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/testing.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/training.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/testing.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/training.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/testing.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/training_groundtruth.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/ ElectronMicroscopy_Hippocampus/testing_groundtruth.tif",
+      "https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/results_test.tif"
+    ]
+  },
+  "empiar": {
+    "raw_metadata": {
+      "entry": {
+        "@xmlns": "http://pdbe.org/empiar",
+        "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "@xsi:schemaLocation": "https://ftp.ebi.ac.uk/pub/databases/emtest/empiar/schema/empiar.xsd",
+        "@accessionCode": "EMPIAR-11759",
+        "@schemaVersion": "0.64",
+        "@public": "true",
+        "admin": {
+          "currentStatus": "REL",
+          "keyDates": {
+            "depositionDate": "2023-11-01",
+            "releaseDate": "2024-01-15",
+            "updateDate": "2024-01-15"
+          },
+          "title": "Developing retina in zebrafish 55 hpf larval eye.",
+          "correspondingAuthor": {
+            "@private": "true",
+            "firstName": "Michaela",
+            "lastName": "Wilsch-Br\u00e4uninger",
+            "organization": {
+              "@type": "academic",
+              "#text": "Max Planck Institute of Molecular Cell Biology and Genetics"
+            },
+            "townOrCity": "Dresden",
+            "country": "Germany",
+            "postOrZipCode": "01307"
+          },
+          "principalInvestigator": {
+            "@private": "true",
+            "firstName": "Michaela",
+            "lastName": "Wilsch-Br\u00e4uninger",
+            "organization": {
+              "@type": "academic",
+              "#text": "Max Planck Institute of Molecular Cell Biology and Genetics"
+            },
+            "townOrCity": "Dresden",
+            "country": "Germany",
+            "postOrZipCode": "01307"
+          },
+          "authorsList": {
+            "author": "Wilsch-Br\u00e4uninger M"
+          },
+          "grantSupport": {
+            "grantReference": {
+              "fundingBody": null,
+              "code": null,
+              "country": null
+            }
+          },
+          "datasetSize": {
+            "@units": "GB",
+            "#text": "1.2"
+          },
+          "entryDOI": "10.6019/EMPIAR-11759",
+          "experimentType": "SBF-SEM",
+          "scale": "tissue"
+        },
+        "crossReferences": {
+          "citationList": {
+            "universalCitation": {
+              "nonJournalCitation": {
+                "@published": "false",
+                "author": {
+                  "@order": "1",
+                  "#text": "Wilsch-Br\u00e4uninger M"
+                },
+                "bookTitle": "Developing retina in zebrafish 55 hpf larval eye.",
+                "publisher": null,
+                "publicationLocation": null,
+                "country": null
+              }
+            }
+          }
+        },
+        "imageSet": {
+          "name": "Developing retina in zebrafish 55 hpf larval eye.",
+          "directory": "/data",
+          "category": "reconstructed volumes",
+          "headerFormat": "DM3",
+          "dataFormat": "DM3",
+          "numImagesOrTiltSeries": "16",
+          "framesPerImage": "1",
+          "voxelType": "UNSIGNED BYTE",
+          "dimensions": {
+            "imageWidth": "5628",
+            "pixelWidth": "80.0",
+            "imageHeight": "5632",
+            "pixelHeight": "80.0"
+          },
+          "details": "Developing retina in zebrafish 55 hpf larval eye. \nIt is a SBF-SEM data set. \nThe resolution is 8nm/px in xy and 50nm per section (z). \n\nIf this is also where to enter, the acquisition conditions on the FEI Magellan400 SEM were 1.9kV accelerating voltage and 200pA current at 0.5 usec dwell time. \nThe microtome unit of the SBF-SEM is called Gatan 3ViewXP.",
+          "segmentationList": null,
+          "micrographsFilePattern": null,
+          "pickedParticlesFilePattern": null,
+          "pickedParticlesDirectory": null
+        }
+      }
+    },
+    "download_links": [
+      "https://ftp.ebi.ac.uk/empiar/world_availability/11759"
+    ]
+  },
+  "idr": {
+    "raw_metadata": {},
+    "download_links": [
+      "https://ftp.ebi.ac.uk/pub/databases/IDR/idr0086-miron-micrographs/20200610-ftp/experimentD/Miron_FIB-SEM/Miron_FIB-SEM_processed/Figure_S3B_FIB-SEM_U2OS_20x20x20nm_xy.tif"
+    ]
+  }
+}
