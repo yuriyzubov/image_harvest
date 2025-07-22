@@ -167,7 +167,7 @@ Secondly, I would build the task scheduler that should spawn worker processes to
 
 It really might seem like building the scheduler by implementing a pool of tasks is the way to go to distribute tasks between workers. In case when each block is independent, that would make a perfect sense. However, there are also cases, when each block would depend on the neighboring data, for example - connected component analysis or tiling. Knowing this, I would try to impelement direct acyclical graph approach, as it would allow to avoid data artefacts caused by a lack of information exchange between blocks. I also would implement an extra queue to collect failed tasks for a retry.
 
-I think that I adding preliminary test run for the few tasks to check the utilization of the GPU is a good idea. There might be a situation when a GPU would sit idle for a substantial time of the compute cycle, expecting the data to load/unload.
+I think that adding preliminary test run for the few tasks to check the utilization of the GPU is a good idea. There might be a situation when a GPU would sit idle for a substantial time of the compute cycle, expecting the data to load/unload.
 
 Implementing task batching. It is useful to reduce potential direct acyclical graph size, to prevent the scheduler overhead.
 
