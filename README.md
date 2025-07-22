@@ -157,33 +157,33 @@ The `dm3` file metadata also contained acquisition details, that could be compar
 **Data ingestion**
 
 
-Typically, volumetric datasets are usually of ~TB size, and it's not efficient to pass the whole dataset to a ML pipeline. It would make sense to load the data in small blocks to provide a consistent load across multiple CPU/GPUs.
+Typically, volumetric datasets are ~TB in size, and it's not efficient to pass the whole dataset to a ML pipeline. It would make sense to load the data in small blocks to provide a consistent load across multiple CPU/GPUs.
 
-Here is how I think I would implemented the data loading software.
+Here is how I think I would implement the data loading software.
 
 First, I'll try to make sure that the data serving is lazily evaluated, i.e. the data block is loaded only when task is being computed. 
 
-Secondly, I would build the task scheduler that should spawn worker processes to load/unload the data. It also must check the status of workers, for reassigning the tasks in case of failure and resource monitoring. 
+Secondly, I would build a task scheduler that spawns worker processes to load/unload the data. It also must check the status of workers, to reassign tasks in case of failure and resource monitoring. 
 
-It really might seem like building the scheduler by implementing a pool of tasks is the way to go to distribute tasks between workers. In case when each block is independent, that would make a perfect sense. However, there are also cases, when each block would depend on the neighboring data, for example - connected component analysis or tiling. Knowing this, I would try to impelement direct acyclical graph approach, as it would allow to avoid data artefacts caused by a lack of information exchange between blocks. I also would implement an extra queue to collect failed tasks for a retry.
+It really might seem like building the scheduler by implementing a pool of tasks is the way to go to distribute tasks between workers. In cases when each block is independent, that would make perfect sense. However, there are also cases, when each block would depend on the neighboring data, for example - connected component analysis or tiling. Knowing this, I would try to impelement a direct acyclical graph approach, as it would allow to avoid data artefacts caused by lack of information exchange between blocks. I also would implement an extra queue to collect failed tasks for a retry.
 
-I think that adding preliminary test run for the few tasks to check the utilization of the GPU is a good idea. There might be a situation when a GPU would sit idle for a substantial time of the compute cycle, expecting the data to load/unload.
+I think adding a preliminary test run for the few tasks to check the utilization of the GPU is a good idea. There might be a situation when a GPU would sit idle for a substantial time of the compute cycle, expecting the data to load/unload.
 
-Implementing task batching. It is useful to reduce potential direct acyclical graph size, to prevent the scheduler overhead.
+Implementing task batching. It is useful to reduce potential direct acyclical graph size, to prevent scheduler overhead.
 
 **Robust validation of the metadata**
 
-I also would add preliminary validation of the image metadata, such as data type, offset, or voxel size to prevent faulty training of ML models. Or another example, data contrast limits should be within a proper range otherwise the image would be too bright or too dark.
+I would also add preliminary validation of the image metadata, such as data type, offset, or voxel size to prevent faulty training of ML models. Or another example, data contrast limits should be within a proper range otherwise the image would be too bright or too dark.
 
 **File formats**
 
-I would implement reading/writing of the data from/into the chunked file formats that are designed for parallel tasks. A healthy split of the large image file into a big number of small files could help with parallelization of reading/writing. 
+I would implement reading/writing of the data from/into the chunked file formats that are designed for parallel tasks. A healthy split of the large image file into many small files could help with parallelization of reading/writing. 
 
 **Extra**
 
-It might be overlooked, but properly designed, intuitive API as well as spending time on distribution infrastructure might also reduce develpment time and adoption rate.
+It might be overlooked, but properly designed, intuitive API as well as spending time on distribution infrastructure might also reduce development time and adoption rate.
 
-The nature of the hardware, where the data is transferred. If it is a CPU, then everything above stands, but if it is a GPU computation, then block batching must be implemented to reduce transfer time from host to device. I also, if possible, would not decompress data on CPU, and instead serve compressed data to GPU, to reduce amount of transferred data.  
+The nature of the hardware, where the data is transferred. If it is a CPU, then everything above stands, but if it is a GPU computation, then block batching must be implemented to reduce transfer time from host to device. If possible, I would also avoid decompressing data on the CPU, and instead serve compressed data to GPU, to reduce amount of transferred data.  
 
 
 
