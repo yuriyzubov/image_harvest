@@ -1,0 +1,12 @@
+beautifulsoup4==4.13.4
+hyperspy==2.3.0
+numpy==2.3.1
+pandas==2.3.1
+playwright==1.53.0
+Requests==2.32.4
+s3fs==2025.7.0
+tensorstore==0.1.76
+tifffile==2025.6.11
+tqdm==4.67.1
+xmltodict==0.14.2
+zarr==2.18.3
