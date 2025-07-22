@@ -1,4 +1,4 @@
-hello! :)
+hello!
 
 The goal of this small project was to investigate the contents of em image data published on several common em image portals:
 
