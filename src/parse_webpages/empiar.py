@@ -5,7 +5,7 @@ from util_etl import remote_xml_metadata_to_dict
 
 def web_metadata_empiar(url):
     
-    soup = asyncio.run(get_webpage_soup(url))
+    soup = asyncio.run(get_webpage_soup(url, 1000, 20000))
 
     # all the useful information is stored in .xml file, so it makes sense to only download that data 
     xml_link = soup.find("a", string=lambda text: text and "Download xml" in text)['href']

@@ -5,7 +5,7 @@ import json
 import requests
 import xmltodict
 
-async def get_webpage_soup(url: str, ):
+async def get_webpage_soup(url: str, response_delay : int, timeout : int):
     """Get Soup object of the page 
 
     Args:
@@ -17,9 +17,9 @@ async def get_webpage_soup(url: str, ):
     
     async with async_playwright() as p:
         # slow_mo is important, kep chromium open long enough for the data to load
-        browser = await p.chromium.launch(slow_mo=1000) 
+        browser = await p.chromium.launch(slow_mo=response_delay) 
         page = await browser.new_page()
-        await page.goto(url, timeout=10000)
+        await page.goto(url, timeout=timeout)
 
         body_html = await page.inner_html("body")
         soup = BeautifulSoup(body_html, "html.parser")

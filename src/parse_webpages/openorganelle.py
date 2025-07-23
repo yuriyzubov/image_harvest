@@ -32,7 +32,7 @@ def get_image_metadata(soup, tag, header_text):
         return metadata
 
 def web_metadata_openorg(url):
-    soup = asyncio.run(get_webpage_soup(url))
+    soup = asyncio.run(get_webpage_soup(url, 1000, 10000))
     raw_metadata = defaultdict(dict)
     header_names = ['Acquisition details', 'FIB-SEM parameters']
     for hn in header_names:    

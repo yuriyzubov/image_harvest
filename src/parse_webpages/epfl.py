@@ -3,7 +3,7 @@ import asyncio
 
 
 def web_metadata_epfl(url : str):
-    soup = asyncio.run(get_webpage_soup(url))
+    soup = asyncio.run(get_webpage_soup(url, 1000, 20000))
     post = soup.find("article", id="post-2138", class_="post-2138")
 
     # scrap useful data
