@@ -21,6 +21,6 @@ if __name__ == "__main__":
     metadata['hemibrain'] = asyncio.run(get_ts_metadata(ds_path, driver))
     print(metadata)
     # store metadata in json file:
-    with open("../../file_metadata.json", "w") as f:
+    with open("./reference_metadata/file_metadata.json", "w") as f:
         json.dump(metadata, f, indent=2)
 

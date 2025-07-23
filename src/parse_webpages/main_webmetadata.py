@@ -4,7 +4,7 @@ from epfl import web_metadata_epfl
 from empiar import web_metadata_empiar
 import json
 if __name__ == "__main__":
-        out_json= 'web_metadata.json'
+        out_json= './reference_metadata/web_metadata.json'
         print('Collecting metadata from web-pages...')
         web_metadata = {'openorganelle': web_metadata_openorg('https://openorganelle.janelia.org/datasets/jrc_mus-nacc-2/'),
                 'hemibrain' : web_metadata_hemibrain('https://tinyurl.com/hemibrain-ng'),
@@ -15,5 +15,5 @@ if __name__ == "__main__":
 
         # store metadata in a json file:
         print(f'Storing web-sourced metadata in {out_json}')
-        with open(f'./{out_json}', 'w') as f:
+        with open(out_json, 'w') as f:
                 json.dump(web_metadata, f, indent=2)

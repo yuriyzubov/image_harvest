@@ -58,7 +58,7 @@ if __name__ == "__main__":
     print(os.path.abspath(output_dir))
 
     # get datasets to download
-    with open("../../web_metadata.json", "r") as f:
+    with open("./reference_metadata/web_metadata.json", "r") as f:
         metadata = json.load(f)    
     download_links = {k : v['download_links'][0] for k,v in metadata.items()}
 
