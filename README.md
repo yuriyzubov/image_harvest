@@ -165,7 +165,7 @@ First, I'll try to make sure that the data serving is lazily evaluated, i.e. the
 
 Secondly, I would build a task scheduler that spawns worker processes to load/unload the data. It also must check the status of workers, to reassign tasks in case of failure and resource monitoring. 
 
-It really might seem like building the scheduler by implementing a pool of tasks is the way to go to distribute tasks between workers. In cases when each block is independent, that would make perfect sense. However, there are also cases, when each block would depend on the neighboring data, for example - connected component analysis or tiling. Knowing this, I would try to impelement a direct acyclical graph approach, as it would allow to avoid data artefacts caused by lack of information exchange between blocks. I also would implement an extra queue to collect failed tasks for a retry.
+It really might seem like building the scheduler by implementing a pool of tasks is the way to go to distribute tasks between workers. In cases when each block is independent, that would make perfect sense. However, there are also cases, when each block would depend on the neighboring data, for example - connected component analysis or tiling. Knowing this, I would try to implement a direct acyclical graph approach, as it would allow to avoid data artefacts caused by lack of information exchange between blocks. I also would implement an extra queue to collect failed tasks for a retry.
 
 I think adding a preliminary test run for the few tasks to check the utilization of the GPU is a good idea. There might be a situation when a GPU would sit idle for a substantial time of the compute cycle, expecting the data to load/unload.
 
