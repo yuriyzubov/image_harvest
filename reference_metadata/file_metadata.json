@@ -881,7 +881,7 @@
             "operation": "load",
             "io_plugin": "rsciio.digitalmicrograph",
             "hyperspy_version": "2.3.0",
-            "timestamp": "2025-07-22T04:43:36.176523-04:00"
+            "timestamp": "2025-07-23T05:21:57.874918+00:00"
           }
         }
       },
@@ -1216,7 +1216,7 @@
       "dtype": "uint8",
       "kvstore": {
         "driver": "file",
-        "path": "/Users/zubovy/Projects/data_etl/data/hemibrain/hemibrain_crop/"
+        "path": "/app/data/hemibrain/hemibrain_crop/"
       },
       "multiscale_metadata": {
         "num_channels": 1,
