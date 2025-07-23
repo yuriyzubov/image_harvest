@@ -1,8 +1,4 @@
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-*.ipynb
-*.aria2
 data/
-reference_metadata/
+.git
