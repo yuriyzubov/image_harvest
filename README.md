@@ -23,6 +23,9 @@ The target pipeline should look like this:
 **Initial setup**
 
 the initial setup requires three things:
+0. clone the repo:
+
+`https://github.com/yuriyzubov/image_harvest`
 
 1. clean environment with python=3.11
 
@@ -34,9 +37,18 @@ the initial setup requires three things:
 
 3. To download some images faster, I utilized `aira2c` cli tool:
 
-    Mac OS: `brew install aria2`
+Mac OS: `brew install aria2`
 
-    Ubuntu: `sudo apt install aria2`
+Ubuntu: `sudo apt install aria2`
+
+Optional: run an app with a docker container:
+
+```bash
+   cd path_to_repo/image_harvest
+   ./setup.sh
+   # run container in the interactive mode
+   docker run -it image_harvest /bin/bash
+```
 
 **The development process**
 
